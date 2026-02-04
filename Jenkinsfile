@@ -12,21 +12,26 @@ pipeline {
       }
     }
     
-   stage('Build Stage') {
+  stage('Build Stage') {
     steps {
         sh '''
-        echo ********* Build Stage Started **********
-        pip3 install -r requirements.txt
+        echo "********* Build Stage Started **********"
+        python3 -m venv venv
+        . venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
         '''
     }
 }
     stage('Testing Stage') {
-      steps {
-        echo '********* Test Stage Started **********'
-        python3 test.py
-        echo '********* Test Stage Finished **********'
-      }   
+    steps {
+        sh '''
+        . venv/bin/activate
+        pytest test.py --junitxml=test-reports/results.xml
+        '''
     }
+}
+
     stage('Configure Artifactory'){
       steps{
         script {
@@ -92,4 +97,5 @@ stage('Deployment Stage'){
         }
     }
 }
+
 
