@@ -12,16 +12,14 @@ pipeline {
       }
     }
     
-    stage('Build Stage') {
-      steps {
+   stage('Build Stage') {
+    steps {
         sh '''
-        echo '********* Build Stage Started **********'
+        echo ********* Build Stage Started **********
         pip3 install -r requirements.txt
-        pyinstaller --onefile app.py
-        echo '********* Build Stage Finished **********'
         '''
-        }
     }
+}
     stage('Testing Stage') {
       steps {
         echo '********* Test Stage Started **********'
@@ -94,3 +92,4 @@ stage('Deployment Stage'){
         }
     }
 }
+
