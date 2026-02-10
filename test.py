@@ -21,7 +21,7 @@ class TestHello(unittest.TestCase):
         end = re.search("</h1>",message).start()
         message = message[start+4:end]
 
-        self.assertEqual(message, "hello brother, Lets have some fun!!")
+        self.assertEqual(message, "hello dear, Lets have some fun!!")
 
     def test_name(self):
 
@@ -44,4 +44,5 @@ if __name__ == '__main__':
     runner = xmlrunner.XMLTestRunner(output='test-reports')
     unittest.main(testRunner=runner)
     #####################################################
+
     unittest.main()
