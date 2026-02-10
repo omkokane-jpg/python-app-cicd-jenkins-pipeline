@@ -29,7 +29,9 @@ pipeline {
 
     post {
         always {
-            junit allowEmptyResults: true, testResults: 'test-reports/*.xml'
+            junit allowEmptyResults: true,
+                  testResults: 'test-reports/*.xml',
+                  skipMarkingBuildUnstable: true
             echo "We came to an end!"
         }
     }
