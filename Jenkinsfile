@@ -29,7 +29,7 @@ pipeline {
 
     post {
         always {
-            junit 'test-reports/*.xml'
+            junit allowEmptyResults: true, testResults: 'test-reports/*.xml'
             echo "We came to an end!"
         }
     }
