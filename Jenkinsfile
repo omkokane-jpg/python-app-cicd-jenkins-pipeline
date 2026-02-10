@@ -6,3 +6,9 @@ stage('Testing Stage') {
     '''
   }
 }
+
+post {
+  always {
+    junit 'test-reports/*.xml'
+  }
+}
