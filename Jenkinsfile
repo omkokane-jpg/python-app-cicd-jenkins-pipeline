@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Setup & Test') {
             steps {
                 sh '''
@@ -21,14 +27,10 @@ pipeline {
         }
     }
 
-post {
-    always {
-        junit testResults: 'test-reports/*.xml', allowEmptyResults: true
-        echo "We came to an end!"
-    }
-    failure {
-        echo "Sorry mate! build is Failed :("
+    post {
+        always {
+            junit 'test-reports/*.xml'
+            echo "We came to an end!"
+        }
     }
 }
-
-
